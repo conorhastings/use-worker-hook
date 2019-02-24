@@ -9,7 +9,6 @@ npm install use-worker-hook
 ```
 
 ```js
-import React, { useState, useEffect } from 'react';
 import useWorker from 'use-worker-hook';
 
 function add(a, b) {
