@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import useWorker from 'use-worker';
+import useWorker from 'use-worker-hook';
 
 function add(a, b) {
   return a+b;
