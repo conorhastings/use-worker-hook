@@ -1,0 +1,32 @@
+{
+  "name": "use-worker",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "sideEffects": false,
+  "scripts": {
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "BABEL_ENV=cjs babel src --out-dir ./dist/cjs",
+    "build:esm": "BABEL_ENV=esm babel src --out-dir ./dist/esm",
+    "prepublish": "npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "workerize": "^0.1.7"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.3.1",
+    "create-react-app": "^2.1.5",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "prettier": "^1.16.4"
+  }
+}
