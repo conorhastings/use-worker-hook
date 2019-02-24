@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'React';
+import { useState, useEffect } from 'react';
 import workerize from 'workerize';
 
 export default function useWorker(func, defaultReturn, functionArguments = []) {

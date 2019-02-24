@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import useWorker from '../../src/index.js';
+import useWorker from 'use-worker';
 
 function add(a, b) {
   return a+b;
