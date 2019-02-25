@@ -14,8 +14,10 @@ import useWorker from 'use-worker-hook';
 function add(a, b) {
   return a+b;
 }
-export default function App({a, b}) {
+export default function App({ a }) {
   const added = useWorker(add, 0, a); // this will run in a webworker
   return <h1>added: {added}</h1>
 }
+
+ReactDOM.render(<App a={[1,2]} />, document.getElementById('root't))
 ```
