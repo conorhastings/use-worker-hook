@@ -21,3 +21,4 @@ export default function App({ a }) {
 
 ReactDOM.render(<App a={[1,2]} />, document.getElementById('root't))
 ```
+<h1><a href="https://codesandbox.io/s/p9o6n9m28m">Example in Codesandbox</a></h1>
