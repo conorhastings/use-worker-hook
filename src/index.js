@@ -1,33 +1,34 @@
-import { useState, useEffect } from 'react';
-import workerize from 'workerize';
+import { useState, useEffect } from "react";
+import workerize from "workerize";
 
-export default function useWorker(func, defaultReturn, functionArguments = []) {
-  const [state, setState] = useState(defaultReturn);
-  const [cachedWorker, setWorker] = useState(null);
-  useEffect(function effect() {
-    let worker = cachedWorker;
-    const functionName = func.name;
-    if (!worker) {
-      let functionAsString = (
-        typeof func === 'string' 
-        ?
-        'string' 
-        : 
-        `${func.toString()}`
-      );
-      functionAsString = (
-        functionAsString.includes('export') 
-        ? 
-        functionAsString 
-        : 
-        `export ${functionAsString}`
-      );
-      worker = worker || workerize(functionAsString);
-    }
-    worker[functionName](...functionArguments).then(function callback(data) {
-      setState(data);
-      setWorker(worker);
-    });
-  }, [func, defaultReturn, functionArguments]);
-  return state;
+export default function useWorker({
+  workerFunction,
+  defaultReturn,
+  functionArguments = []
+}) {
+  const [state, setState] = useState(null)
+  useEffect(
+    () => {
+      const [cachedWorker, setWorker] = useState(null);
+      let worker = cachedWorker;
+      const functionName = workerFunction.name;
+      if (!worker) {
+        const functionAsString =
+          typeof workerFunction === "string" ? workerFunction : `${workerFunction.toString()}`;
+        functionAsString =
+          functionAsString.includes("export") ||
+          functionAsString.includes("/") ||
+          functionAsString.includes(".js")
+            ? functionAsString
+            : `export ${functionAsString}`;
+        worker = worker || workerize(functionAsString);
+      }
+      worker[functionName](...functionArguments).then(data => {
+        setState(data);
+        setWorker(worker);
+      });
+    },
+    [workerFunction, functionArgume]
+  );
+  return state || defaultReturn;
 }
